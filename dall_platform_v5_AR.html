@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dall Academy — منصة SDLE الأولى في السعودية</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Arabic:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#4A8FA3; --teal-mid:#7BB3C4; --teal-light:#D5E8F0; --teal-dark:#357a8f;
+  --navy:#1A1A2E; --navy-mid:#252545; --navy-light:#2e2e50;
+  --off-white:#F5F9FB; --white:#ffffff;
+  --gray:#6B7280; --light-gray:#E5E7EB; --border:#dde4ea;
+  --black:#111111; --green:#22c55e; --amber:#f59e0b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Arabic',sans-serif;background:var(--off-white);color:var(--black);overflow-x:hidden}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 56px;background:rgba(245,249,251,0.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo img{height:36px;object-fit:contain}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:'DM Sans';font-size:13.5px;font-weight:500;color:var(--navy);text-decoration:none;transition:.2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-right{display:flex;gap:12px;align-items:center}
+.btn-ghost{font-family:'IBM Plex Arabic';font-size:13px;font-weight:500;background:transparent;color:var(--navy);border:1.5px solid var(--border);border-radius:8px;padding:9px 20px;cursor:pointer;transition:.2s}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.btn-nav-cta{font-family:'IBM Plex Arabic';font-size:13px;font-weight:700;background:var(--teal);color:#fff;border:none;border-radius:8px;padding:9px 22px;cursor:pointer;transition:.2s}
+.btn-nav-cta:hover{background:var(--teal-dark);transform:translateY(-1px)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 56px 80px;gap:60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero-bg-circle1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,143,163,.09) 0%,transparent 70%);right:-100px;top:50%;transform:translateY(-50%)}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(74,143,163,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(74,143,163,.035) 1px,transparent 1px);background-size:52px 52px}
+.hero-text{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-light);color:var(--teal);border:1px solid rgba(74,143,163,.3);border-radius:100px;padding:5px 16px;font-size:12.5px;font-weight:600;margin-bottom:26px;animation:fadeUp .6s ease both}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+h1{font-size:52px;font-weight:700;line-height:1.2;color:var(--navy);margin-bottom:22px;animation:fadeUp .7s .1s ease both}
+h1 .accent{color:var(--teal)}
+h1 .sub-accent{color:var(--navy-mid)}
+.hero-desc{font-size:16.5px;font-weight:400;color:var(--gray);line-height:1.85;margin-bottom:36px;max-width:480px;animation:fadeUp .7s .2s ease both}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.btn-primary{font-family:'IBM Plex Arabic';font-size:15px;font-weight:700;background:var(--navy);color:#fff;border:none;border-radius:10px;padding:14px 30px;cursor:pointer;transition:.25s;display:flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--teal);transform:translateY(-2px);box-shadow:0 10px 28px rgba(74,143,163,.3)}
+.btn-outline{font-family:'IBM Plex Arabic';font-size:15px;font-weight:500;background:transparent;color:var(--navy);border:1.5px solid var(--border);border-radius:10px;padding:14px 26px;cursor:pointer;transition:.25s}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal)}
+.hero-stats{display:flex;gap:28px;margin-top:36px;animation:fadeUp .7s .4s ease both}
+.hero-stat{text-align:right}
+.hero-stat-num{font-family:'Playfair Display';font-size:26px;font-weight:900;color:var(--teal);display:block;line-height:1}
+.hero-stat-label{font-size:11.5px;color:var(--gray);margin-top:3px;font-family:'DM Sans'}
+
+/* ─── HERO VISUAL: PLATFORM PREVIEW ─── */
+.hero-visual{position:relative;z-index:1;animation:fadeUp .8s .15s ease both}
+.platform-preview{background:var(--navy);border-radius:20px;padding:20px;box-shadow:0 40px 80px rgba(26,26,46,.3),0 0 0 1px rgba(255,255,255,.06);overflow:hidden}
+.platform-topbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.topbar-dots{display:flex;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.topbar-title{font-family:'DM Sans';font-size:12px;color:rgba(255,255,255,.4);margin-right:auto}
+
+/* Dashboard mini */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dash-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px}
+.dash-card-title{font-size:10px;color:rgba(255,255,255,.4);font-family:'DM Sans';margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px}
+.dash-card-val{font-family:'Playfair Display';font-size:28px;font-weight:900;color:var(--teal)}
+.dash-card-sub{font-size:10px;color:rgba(255,255,255,.35);margin-top:2px}
+
+/* Mini progress bar */
+.mini-prog{height:4px;background:rgba(255,255,255,.08);border-radius:4px;margin-top:6px;overflow:hidden}
+.mini-prog-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--teal),var(--teal-mid))}
+
+/* Section bars chart */
+.sections-chart{margin-top:10px}
+.section-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.section-bar-label{font-size:9.5px;color:rgba(255,255,255,.5);width:70px;text-align:right;font-family:'DM Sans';white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.section-bar-track{flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden}
+.section-bar-fill{height:100%;border-radius:6px;background:var(--teal)}
+.section-bar-pct{font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Sans';width:28px}
+
+/* MCQ preview */
+.mcq-preview{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;margin-top:10px}
+.mcq-q-text{font-size:11px;color:#e2e8f0;line-height:1.55;margin-bottom:10px}
+.mcq-opts{display:flex;flex-direction:column;gap:5px}
+.mcq-opt{font-size:10.5px;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.6)}
+.mcq-opt.correct{background:rgba(74,143,163,.15);border-color:var(--teal);color:var(--teal-mid)}
+.mcq-opt.wrong{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:rgba(239,68,68,.7)}
+.mcq-cite{font-size:9px;color:rgba(255,255,255,.25);margin-top:8px;font-family:'JetBrains Mono'}
+
+/* Float cards */
+.float-card{position:absolute;background:white;border:1px solid var(--border);border-radius:12px;padding:10px 14px;box-shadow:0 8px 28px rgba(0,0,0,.1);display:flex;align-items:center;gap:10px;font-family:'IBM Plex Arabic';font-size:12px;font-weight:600;color:var(--navy)}
+.float1{top:-16px;left:-20px;animation:float 3s ease-in-out infinite}
+.float2{bottom:-16px;right:-20px;animation:float 3s 1.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ═══ STATS BAND ═══ */
+.stats-band{background:var(--navy);padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{padding:36px 32px;border-right:1px solid rgba(255,255,255,.06);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Playfair Display';font-size:44px;font-weight:900;color:var(--teal);display:block;letter-spacing:-1px}
+.stat-label{font-family:'DM Sans';font-size:12px;color:rgba(255,255,255,.4);margin-top:5px;display:block}
+
+/* ═══ FEATURES ═══ */
+.features-section{padding:96px 56px;background:var(--off-white)}
+.section-eyebrow{font-family:'DM Sans';font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.section-h{font-family:'IBM Plex Arabic';font-size:38px;font-weight:700;color:var(--navy);margin-bottom:14px;line-height:1.25}
+.section-p{font-size:16px;color:var(--gray);max-width:560px;line-height:1.8;margin-bottom:56px}
+
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border);border-radius:20px;overflow:hidden}
+.feat-card{background:var(--white);padding:40px;transition:.3s;position:relative;overflow:hidden}
+.feat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(74,143,163,.03) 0%,transparent 60%);opacity:0;transition:.3s}
+.feat-card:hover{background:var(--off-white)}
+.feat-card:hover::after{opacity:1}
+.feat-card:first-child{border-radius:18px 0 0 0}
+.feat-card:nth-child(2){border-radius:0 18px 0 0}
+.feat-card:nth-child(3){border-radius:0 0 0 18px}
+.feat-card:last-child{border-radius:0 0 18px 0}
+.feat-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:24px;position:relative;z-index:1}
+.feat-icon-teal{background:var(--teal-light)}
+.feat-icon-navy{background:rgba(26,26,46,.07)}
+.feat-tag{display:inline-flex;align-items:center;gap:5px;background:var(--teal-light);color:var(--teal);border-radius:6px;padding:2px 10px;font-size:10.5px;font-weight:600;margin-bottom:12px;font-family:'DM Sans'}
+.feat-title{font-family:'IBM Plex Arabic';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;position:relative;z-index:1}
+.feat-desc{font-size:14px;color:var(--gray);line-height:1.8;position:relative;z-index:1}
+.feat-highlight{margin-top:20px;padding:14px 16px;background:var(--teal-light);border-radius:10px;font-size:13px;color:var(--teal-dark);font-weight:600;position:relative;z-index:1}
+
+/* ═══ QBANK VISUAL ═══ */
+.qbank-section{padding:96px 56px;background:var(--white)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.two-col.reverse{direction:ltr}
+.two-col.reverse .col-text{direction:rtl}
+.two-col.reverse .col-visual{direction:rtl}
+/* Q-Bank UI mockup */
+.qbank-ui{background:var(--navy);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(26,26,46,.2)}
+.qbank-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.qbank-title{font-family:'DM Sans';font-size:13px;font-weight:600;color:white}
+.qbank-badge{background:rgba(74,143,163,.2);color:var(--teal-mid);font-family:'DM Sans';font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid rgba(74,143,163,.3)}
+.qbank-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filter-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-family:'DM Sans';font-size:10px;padding:5px 12px;border-radius:100px;cursor:pointer}
+.filter-chip.active{background:rgba(74,143,163,.2);border-color:var(--teal);color:var(--teal-mid)}
+.qbank-question{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;margin-bottom:12px}
+.qnum{font-family:'JetBrains Mono';font-size:9.5px;color:rgba(255,255,255,.25);margin-bottom:8px}
+.qtext{font-size:12px;color:#e2e8f0;line-height:1.6;margin-bottom:12px}
+.qoptions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.qopt{padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.07);font-size:10.5px;color:rgba(255,255,255,.6);text-align:center;cursor:pointer;transition:.2s}
+.qopt:hover{border-color:var(--teal);color:var(--teal-mid)}
+.qopt.sel{background:rgba(74,143,163,.15);border-color:var(--teal);color:var(--teal-mid)}
+.qref{margin-top:10px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;font-family:'JetBrains Mono';font-size:9px;color:rgba(255,255,255,.25)}
+
+/* ═══ MOCK TEST VISUAL ═══ */
+.mock-section{padding:96px 56px;background:var(--off-white)}
+.mock-ui{background:var(--navy);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(26,26,46,.2)}
+.mock-topbar{background:rgba(0,0,0,.25);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.mock-exam-info{font-family:'DM Sans';font-size:11px;color:rgba(255,255,255,.5)}
+.mock-timer{font-family:'JetBrains Mono';font-size:22px;font-weight:600;color:var(--teal);letter-spacing:2px}
+.mock-progress{height:3px;background:rgba(255,255,255,.07)}
+.mock-prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-mid));width:38%}
+.mock-body{padding:20px}
+.mock-q-counter{font-family:'DM Sans';font-size:10px;color:rgba(255,255,255,.3);margin-bottom:10px}
+.mock-q-text{font-size:13px;color:#e2e8f0;line-height:1.65;margin-bottom:16px}
+.mock-opts{display:flex;flex-direction:column;gap:8px}
+.mock-opt{padding:11px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.7);cursor:pointer;display:flex;align-items:center;gap:10px;transition:.2s}
+.mock-opt-letter{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-family:'DM Sans';font-size:10px;flex-shrink:0}
+.mock-opt.active{background:rgba(74,143,163,.12);border-color:var(--teal)}
+.mock-opt.active .mock-opt-letter{background:var(--teal);border-color:var(--teal);color:white}
+.mock-nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid rgba(255,255,255,.06)}
+.mock-nav-btn{font-family:'DM Sans';font-size:12px;font-weight:600;padding:8px 18px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);background:transparent}
+.mock-next-btn{background:var(--teal);border-color:var(--teal);color:white}
+.mock-flag{font-size:11px;color:var(--amber);font-family:'DM Sans';display:flex;align-items:center;gap:5px}
+
+/* ═══ DASHBOARD VISUAL ═══ */
+.dashboard-section{padding:96px 56px;background:var(--white)}
+.dash-full-ui{background:var(--navy);border-radius:18px;padding:24px;box-shadow:0 24px 60px rgba(26,26,46,.2)}
+.dash-top-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.dash-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;text-align:center}
+.dash-metric-val{font-family:'Playfair Display';font-size:30px;font-weight:900;color:var(--teal);display:block}
+.dash-metric-label{font-family:'DM Sans';font-size:10px;color:rgba(255,255,255,.35);margin-top:4px}
+.dash-bottom-row{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
+.dash-chart-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px}
+.dash-chart-title{font-family:'DM Sans';font-size:11px;color:rgba(255,255,255,.4);margin-bottom:14px}
+/* Bar chart CSS */
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:80px}
+.bar{flex:1;border-radius:4px 4px 0 0;min-width:12px;background:rgba(74,143,163,.3);transition:.3s;position:relative}
+.bar:hover{background:var(--teal)}
+.bar.highlight{background:var(--teal)}
+/* Radar / section breakdown */
+.section-breakdown{display:flex;flex-direction:column;gap:8px}
+.sec-row{display:flex;align-items:center;gap:10px}
+.sec-name{font-size:10px;color:rgba(255,255,255,.5);font-family:'DM Sans';width:80px;text-align:right;flex-shrink:0}
+.sec-track{flex:1;height:7px;background:rgba(255,255,255,.07);border-radius:7px;overflow:hidden}
+.sec-fill{height:100%;border-radius:7px}
+.sec-pct{font-family:'JetBrains Mono';font-size:9px;color:rgba(255,255,255,.4);width:30px;text-align:left}
+.week-labels{display:flex;gap:8px;margin-top:5px}
+.week-label{flex:1;font-family:'DM Sans';font-size:8.5px;color:rgba(255,255,255,.25);text-align:center}
+
+/* ═══ MATCHING CALC ═══ */
+.calc-section{padding:96px 56px;background:var(--off-white)}
+.calc-ui{background:var(--navy);border-radius:18px;padding:28px;box-shadow:0 24px 60px rgba(26,26,46,.2)}
+.calc-header{margin-bottom:24px}
+.calc-title{font-family:'IBM Plex Arabic';font-size:16px;font-weight:700;color:white;margin-bottom:4px}
+.calc-sub{font-size:12px;color:rgba(255,255,255,.35);font-family:'DM Sans'}
+.calc-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.calc-field{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 16px}
+.calc-field-label{font-size:10px;color:rgba(255,255,255,.35);font-family:'DM Sans';margin-bottom:6px}
+.calc-field-val{font-family:'Playfair Display';font-size:28px;font-weight:900;color:white}
+.calc-field-unit{font-size:11px;color:rgba(255,255,255,.3);font-family:'DM Sans'}
+.calc-slider{width:100%;margin-top:8px;accent-color:var(--teal)}
+.calc-result{background:linear-gradient(135deg,rgba(74,143,163,.15),rgba(74,143,163,.05));border:1px solid rgba(74,143,163,.25);border-radius:12px;padding:20px;text-align:center}
+.calc-result-label{font-size:12px;color:rgba(255,255,255,.5);font-family:'DM Sans';margin-bottom:8px}
+.calc-result-score{font-family:'Playfair Display';font-size:52px;font-weight:900;color:var(--teal)}
+.calc-result-status{font-family:'IBM Plex Arabic';font-size:14px;font-weight:600;color:var(--green);margin-top:4px}
+.calc-specialties{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.specialty-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px;text-align:center}
+.specialty-name{font-size:10px;color:rgba(255,255,255,.5);font-family:'DM Sans';margin-bottom:3px}
+.specialty-score{font-family:'JetBrains Mono';font-size:12px;font-weight:600;color:var(--teal-mid)}
+.specialty-match{font-size:9px;font-family:'DM Sans'}
+.match-yes{color:var(--green)}
+.match-no{color:rgba(239,68,68,.7)}
+
+/* ═══ PRICING ═══ */
+.pricing-section{padding:96px 56px;background:linear-gradient(165deg,var(--navy) 0%,#0d1220 100%);text-align:center}
+.pricing-section .section-eyebrow{color:var(--teal-mid)}
+.pricing-section .section-h{color:white}
+.pricing-section .section-p{color:rgba(255,255,255,.4);margin-inline:auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:920px;margin:52px auto 0}
+.price-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:36px 28px;text-align:right;transition:.25s;position:relative}
+.price-card:hover:not(.featured){border-color:rgba(74,143,163,.35);transform:translateY(-4px)}
+.price-card.featured{background:var(--teal);border-color:var(--teal);transform:scale(1.045);box-shadow:0 20px 60px rgba(74,143,163,.4)}
+.price-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--navy-mid);color:white;font-family:'DM Sans';font-size:10.5px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;border:1px solid rgba(255,255,255,.1)}
+.price-name{font-family:'DM Sans';font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
+.price-amt{font-family:'Playfair Display';font-size:46px;font-weight:900;color:white;line-height:1}
+.price-unit{font-family:'DM Sans';font-size:14px;color:rgba(255,255,255,.5)}
+.price-period{font-family:'IBM Plex Arabic';font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px;margin-top:3px}
+.price-features{list-style:none;margin-bottom:28px}
+.price-features li{font-size:13px;color:rgba(255,255,255,.75);padding:8px 0;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);font-family:'IBM Plex Arabic'}
+.price-features li:last-child{border-bottom:none}
+.chk{color:var(--green);font-size:13px;flex-shrink:0}
+.btn-plan{width:100%;font-family:'IBM Plex Arabic';font-size:14px;font-weight:700;padding:13px;border-radius:10px;cursor:pointer;transition:.2s;border:none}
+.btn-plan-white{background:white;color:var(--teal)}
+.btn-plan-white:hover{background:var(--off-white)}
+.btn-plan-dark{background:var(--navy);color:white}
+.btn-plan-dark:hover{background:#0a0e1a}
+
+/* ═══ CTA ═══ */
+.cta-band{background:var(--teal-light);padding:80px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.cta-band h2{font-family:'IBM Plex Arabic';font-size:32px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.cta-band p{font-size:15px;color:var(--gray)}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--navy);padding:36px 56px;display:flex;align-items:center;justify-content:space-between}
+footer img{height:30px;filter:brightness(0) invert(1);opacity:.6}
+.footer-copy{font-family:'DM Sans';font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ═══ UTILS ═══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.text-teal{color:var(--teal)}
+
+/* ═══════════════════════════════════
+   MOBILE RESPONSIVE — MAX 768px
+═══════════════════════════════════ */
+
+/* Hamburger button */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:transparent;z-index:300}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+.nav-hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile nav drawer */
+.mobile-nav-drawer{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(245,249,251,0.98);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:199;padding:20px 24px;flex-direction:column;gap:4px;transform:translateY(-10px);opacity:0;transition:.25s}
+.mobile-nav-drawer.open{display:flex;transform:translateY(0);opacity:1}
+.mobile-nav-drawer a{font-size:15px;font-weight:500;color:var(--navy);text-decoration:none;padding:11px 0;border-bottom:1px solid var(--border)}
+.mobile-nav-drawer a:last-child{border-bottom:none}
+.mobile-nav-drawer .mob-cta{margin-top:12px;background:var(--teal);color:white;text-align:center;border-radius:10px;padding:13px;font-weight:700;border-bottom:none}
+
+@media(max-width:768px){
+  /* NAV */
+  nav{padding:12px 20px}
+  .nav-links{display:none}
+  .nav-right{display:none}
+  .nav-hamburger{display:flex}
+
+  /* HERO */
+  .hero{grid-template-columns:1fr;padding:90px 20px 48px;gap:36px;min-height:auto}
+  .hero-bg-circle1{width:300px;height:300px;right:-60px}
+  h1{font-size:32px}
+  .hero-desc{font-size:14.5px;max-width:100%}
+  .hero-stats{gap:16px;flex-wrap:wrap}
+  .float1,.float2{display:none}
+  .platform-preview{max-width:100% !important}
+  .dash-grid{grid-template-columns:1fr 1fr}
+  .mcq-opts{flex-direction:column}
+
+  /* STATS BAND */
+  .stats-band{grid-template-columns:1fr 1fr}
+  .stat-item{padding:22px 16px;border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.06)}
+  .stat-num{font-size:32px}
+
+  /* SECTIONS */
+  .features-section,.qbank-section,.mock-section,.dashboard-section,.calc-section,.pricing-section{padding:56px 20px}
+  .section-h{font-size:26px}
+  .section-p{font-size:14px}
+
+  /* FEATURES GRID */
+  .features-grid{grid-template-columns:1fr;gap:0}
+  .feat-card{border-radius:0 !important;padding:28px 20px}
+  .feat-card:first-child{border-radius:16px 16px 0 0 !important}
+  .feat-card:last-child{border-radius:0 0 16px 16px !important}
+
+  /* TWO COL */
+  .two-col,.two-col.reverse{grid-template-columns:1fr;gap:32px;direction:rtl}
+  .two-col.reverse .col-text,.two-col.reverse .col-visual{direction:rtl}
+
+  /* DASHBOARD */
+  .dash-top-row{grid-template-columns:1fr 1fr}
+  .dash-bottom-row{grid-template-columns:1fr}
+  .dash-metric-val{font-size:22px}
+
+  /* MOCK */
+  .mock-q-text{font-size:12px}
+  .mock-opts{gap:6px}
+
+  /* QBANK */
+  .qoptions{grid-template-columns:1fr}
+
+  /* CALC */
+  .calc-inputs{grid-template-columns:1fr}
+  .calc-specialties{grid-template-columns:1fr 1fr}
+  .calc-result-score{font-size:40px}
+
+  /* PRICING */
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin-inline:auto}
+  .price-card.featured{transform:scale(1)}
+  .price-card{padding:28px 22px}
+
+  /* CTA */
+  .cta-band{flex-direction:column;text-align:center;padding:48px 20px;gap:24px}
+  .cta-band h2{font-size:24px}
+
+  /* FOOTER */
+  footer{flex-direction:column;gap:14px;padding:24px 20px;text-align:center}
+}
+
+@media(max-width:380px){
+  h1{font-size:27px}
+  .stats-band{grid-template-columns:1fr 1fr}
+  .dash-top-row{grid-template-columns:1fr 1fr}
+  .hero-stats{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav>
+  <div class="nav-logo">
+    <img src="/mnt/user-data/uploads/_Transparent_logo.png" alt="Dall Academy">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#features">أدواتنا</a></li>
+    <li><a href="#qbank">بنك الأسئلة</a></li>
+    <li><a href="#mock">اختبار تجريبي</a></li>
+    <li><a href="#dashboard">لوحة التدريب</a></li>
+    <li><a href="#calculator">حاسبة القبول</a></li>
+    <li><a href="#pricing">الأسعار</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nav-right">
+    <button class="btn-ghost">تسجيل الدخول</button>
+    <button class="btn-nav-cta">جرّب 7 أيام مجاناً</button>
+  </div>
+</nav>
+<div class="mobile-nav-drawer" id="mobileDrawer">
+  <a href="#features">أدواتنا</a>
+  <a href="#qbank">بنك الأسئلة</a>
+  <a href="#mock">اختبار تجريبي</a>
+  <a href="#dashboard">لوحة التدريب</a>
+  <a href="#calculator">حاسبة القبول</a>
+  <a href="#pricing">الأسعار</a>
+  <a href="#pricing" class="mob-cta">جرّب 7 أيام مجاناً</a>
+</div>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-circle1"></div>
+    <div class="hero-bg-grid"></div>
+  </div>
+
+  <div class="hero-text">
+    <div class="hero-badge"><span class="pulse-dot"></span> منصة SDLE الأولى في السعودية بالذكاء الاصطناعي</div>
+    <h1>كل اللي تحتاجه<br>لتعدّي الـ<span class="accent"> SDLE</span><br><span class="sub-accent">في مكان واحد</span></h1>
+    <p class="hero-desc">Dall SDLE Guider + QBANK مستنِد + Mock Test حقيقي + Dashboard شخصي + حاسبة Matching — منصة متكاملة مصممة خصيصاً لامتحان الترخيص السعودي.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">ابدأ تجربتك المجانية ←</button>
+      <button class="btn-outline">شوف كيف تشتغل</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">200</span>
+        <span class="hero-stat-label">سؤال في الامتحان</span>
+      </div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">542</span>
+        <span class="hero-stat-label">درجة النجاح</span>
+      </div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">+18</span>
+        <span class="hero-stat-label">مرجع SCFHS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Platform Preview -->
+  <div class="hero-visual">
+    <div style="position:relative">
+      <div class="platform-preview" style="max-width:440px">
+        <div class="platform-topbar">
+          <div class="topbar-dots">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <span class="topbar-title">Dall Academy — Dashboard</span>
+        </div>
+
+        <div class="dash-grid">
+          <div class="dash-card">
+            <div class="dash-card-title">نقاطك الحالية</div>
+            <div class="dash-card-val">647</div>
+            <div class="dash-card-sub">↑ أعلى من حد النجاح بـ105 نقطة</div>
+            <div class="mini-prog" style="margin-top:10px"><div class="mini-prog-fill" style="width:81%"></div></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title">الأسئلة المحلولة</div>
+            <div class="dash-card-val">1,240</div>
+            <div class="dash-card-sub">هذا الأسبوع: +86 سؤال</div>
+            <div class="mini-prog" style="margin-top:10px"><div class="mini-prog-fill" style="width:62%"></div></div>
+          </div>
+        </div>
+
+        <div class="sections-chart" style="margin-top:10px">
+          <div style="font-family:'DM Sans';font-size:9.5px;color:rgba(255,255,255,.3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">أداؤك بالأقسام</div>
+          <div class="section-bar-row"><span class="section-bar-label">Periodontics</span><div class="section-bar-track"><div class="section-bar-fill" style="width:84%;background:var(--teal)"></div></div><span class="section-bar-pct">84%</span></div>
+          <div class="section-bar-row"><span class="section-bar-label">Endodontics</span><div class="section-bar-track"><div class="section-bar-fill" style="width:71%;background:var(--teal-mid)"></div></div><span class="section-bar-pct">71%</span></div>
+          <div class="section-bar-row"><span class="section-bar-label">Restorative</span><div class="section-bar-track"><div class="section-bar-fill" style="width:60%;background:var(--amber)"></div></div><span class="section-bar-pct">60%</span></div>
+          <div class="section-bar-row"><span class="section-bar-label">Oral Med/Surg</span><div class="section-bar-track"><div class="section-bar-fill" style="width:55%;background:#ef4444"></div></div><span class="section-bar-pct">55%</span></div>
+        </div>
+
+        <div class="mcq-preview" dir="rtl" style="text-align:right">
+          <div class="mcq-q-text" style="font-family:'Tajawal',sans-serif">مريض عمره 35 سنة يعاني من جيب لثوي عمقه 6mm على السطح الأنسي للسن 14، ما هو أفضل علاج؟</div>
+          <div class="mcq-opts">
+            <div class="mcq-opt" style="font-family:'Tajawal',sans-serif">أ. تنظيف وتسوية الجذور</div>
+            <div class="mcq-opt correct" style="font-family:'Tajawal',sans-serif">ب. رفع السديلة الجراحي ✓</div>
+            <div class="mcq-opt wrong" style="font-family:'Tajawal',sans-serif">ج. التجديد الموجَّه للأنسجة</div>
+            <div class="mcq-opt" style="font-family:'Tajawal',sans-serif">د. الخلع</div>
+          </div>
+          <div class="mcq-cite">📖 Carranza's Clinical Periodontology, 13th ed.</div>
+          <div style="margin-top:8px;padding:8px 10px;background:rgba(74,143,163,.12);border-radius:7px;font-size:10px;color:rgba(255,255,255,.65);line-height:1.65;font-family:'Tajawal',sans-serif"><span style="color:#93c5d9;font-weight:700">الشرح: </span>الجيوب اللثوية بعمق ≥6mm لا تستجيب بشكل كافٍ للعلاج التحفظي وحده؛ رفع السديلة الجراحي يُتيح وصولاً مباشراً لتنظيف السطح الجذري وتقليل عمق الجيب.</div>
+        </div>
+      </div>
+
+      <div class="float-card float1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A8FA3" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <div style="font-size:10px;color:var(--gray);font-family:'DM Sans'">Mock Test #3</div>
+          <div style="color:var(--teal);font-size:13px">اجتزت! 589 نقطة</div>
+        </div>
+      </div>
+      <div class="float-card float2">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <div>
+          <div style="font-size:10px;color:var(--gray);font-family:'DM Sans'">Matching Score</div>
+          <div style="color:var(--amber);font-size:13px">Oral Medicine ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ STATS ══════════════════ -->
+<div class="stats-band">
+  <div class="stat-item"><span class="stat-num">200</span><span class="stat-label">سؤال MCQ — قسمين × 100</span></div>
+  <div class="stat-item"><span class="stat-num">4h</span><span class="stat-label">المدة + 30 دقيقة استراحة</span></div>
+  <div class="stat-item"><span class="stat-num">542</span><span class="stat-label">درجة النجاح من 800</span></div>
+  <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">أقسام رئيسية في الـ Blueprint</span></div>
+</div>
+
+<!-- ══════════════════ FEATURES OVERVIEW ══════════════════ -->
+<section class="features-section" id="features">
+  <div class="section-eyebrow">أدوات المنصة</div>
+  <div class="section-h">كل أداة صُمِّمت لـ SDLE</div>
+  <p class="section-p">مو مجرد بنك أسئلة — خمس أدوات متكاملة تغطي كل جانب من التحضير، من الفهم للتدريب للمتابعة للتخطيط.</p>
+
+  <div class="features-grid">
+    <!-- Feature 1: Guider -->
+    <div class="feat-card">
+      <div class="feat-tag">🤖 AI Tutor</div>
+      <div class="feat-icon-wrap feat-icon-teal">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4A8FA3" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="feat-title">Dall SDLE Guider</div>
+      <div class="feat-desc">مرشد ذكاء اصطناعي على Telegram يجاوبك على أي سؤال سريري بإجابة مستندة من المراجع الرسمية — اسأله بالعربي أو الإنجليزي، الرد فوري مع الصفحة والمرجع.</div>
+      <div class="feat-highlight">كل إجابة مدعومة بـ: اسم الكتاب + رقم الصفحة</div>
+    </div>
+
+    <!-- Feature 2: QBANK -->
+    <div class="feat-card">
+      <div class="feat-tag">📚 Referenced QBANK</div>
+      <div class="feat-icon-wrap feat-icon-navy">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A1A2E" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="feat-title">QBANK المستنِد</div>
+      <div class="feat-desc">بنك أسئلة شامل موزّع على الأقسام الخمسة حسب الـ Blueprint الرسمي — كل سؤال مربوط بمرجعه من +18 كتاب معتمد من SCFHS، مع شرح مفصّل للإجابة.</div>
+      <div class="feat-highlight">فلتر حسب القسم، الصعوبة، والمراجع</div>
+    </div>
+
+    <!-- Feature 3: Mock Test -->
+    <div class="feat-card">
+      <div class="feat-tag">🎯 Mock Test</div>
+      <div class="feat-icon-wrap feat-icon-teal">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4A8FA3" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="feat-title">محاكاة الامتحان الحقيقي</div>
+      <div class="feat-desc">200 سؤال، قسمين × 120 دقيقة، استراحة 30 دقيقة — نفس بيئة الامتحان الحقيقي. نتيجة فورية على مقياس 200--800 مع تقرير أداء تفصيلي بعد كل محاولة.</div>
+      <div class="feat-highlight">تقرير أداء مقارن بالمتوسط العام</div>
+    </div>
+
+    <!-- Feature 4: Dashboard -->
+    <div class="feat-card">
+      <div class="feat-tag">📊 Dashboard</div>
+      <div class="feat-icon-wrap feat-icon-navy">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A1A2E" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      </div>
+      <div class="feat-title">لوحة التدريب الشخصية</div>
+      <div class="feat-desc">تابع تقدمك يوم بيوم — نسبة الإتقان لكل قسم، منحنى الأداء عبر الزمن، الأسئلة اللي غلطت فيها، وخطة مذاكرة مخصصة بناءً على نقاط ضعفك.</div>
+      <div class="feat-highlight">خطة مراجعة ذكية تتكيف مع أداءك</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ QBANK SECTION ══════════════════ -->
+<section class="qbank-section" id="qbank">
+  <div class="two-col">
+    <div class="col-visual">
+      <div class="qbank-ui">
+        <div class="qbank-header">
+          <div class="qbank-title">📚 Referenced QBANK</div>
+          <div class="qbank-badge">+4,800 سؤال</div>
+        </div>
+        <div class="qbank-filters">
+          <span class="filter-chip active">Periodontics</span>
+          <span class="filter-chip">Endodontics</span>
+          <span class="filter-chip">Restorative</span>
+          <span class="filter-chip">Ortho/Pedo</span>
+          <span class="filter-chip">Oral Medicine</span>
+        </div>
+        <div class="qbank-question">
+          <div class="qnum">Q-1247 • Periodontics • Intermediate</div>
+          <div class="qtext">A 42-year-old patient presents with recurrent bleeding on brushing. Probing reveals 4mm pockets and 20% horizontal bone loss. According to the AAP 2017 classification, what is the MOST accurate diagnosis?</div>
+          <div class="qoptions">
+            <div class="qopt">Stage I, Grade A</div>
+            <div class="qopt sel">Stage II, Grade B ✓</div>
+            <div class="qopt">Stage III, Grade B</div>
+            <div class="qopt">Gingivitis</div>
+          </div>
+          <div class="qref">📖 Carranza's Clinical Periodontology — Chapter 4, p.58 | AAP/EFP 2017 Classification</div>
+          <div style="margin-top:10px;padding:10px 12px;background:rgba(74,143,163,.1);border-radius:8px;font-size:10px;line-height:1.7;color:rgba(255,255,255,.65);"><span style="color:#7BB3C4;font-weight:700">Explanation: </span>Stage II: 15–33% bone loss, pockets ≤5mm, no complexity factors. Grade B = moderate rate of progression (AAP 2017).</div>
+        </div>
+        <div class="qbank-question" style="opacity:.6">
+          <div class="qnum">Q-1248 • Periodontics • Advanced</div>
+          <div class="qtext" style="color:rgba(255,255,255,.4)">In Grade C Periodontitis, what is the PRIMARY indicator that differentiates it from Grade B?</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-text">
+      <div class="section-eyebrow">Referenced QBANK</div>
+      <div class="section-h">كل سؤال له مرجعه</div>
+      <p class="section-p">مو بس "الإجابة ب" — كل سؤال في الـ QBANK مربوط بصفحة محددة من كتابها الرسمي. لما تتعلم السبب، ما تنسى الجواب.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔍</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">فلتر ذكي</div><div style="font-size:13px;color:var(--gray)">فلتر حسب القسم، الصعوبة، أو المرجع المحدد</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">📖</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">شرح مستنِد</div><div style="font-size:13px;color:var(--gray)">كل إجابة تأتي بشرح وافي + مصدر الكتاب والصفحة</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🔖</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">علّم الأسئلة الصعبة</div><div style="font-size:13px;color:var(--gray)">احفظ أي سؤال للمراجعة لاحقاً بضغطة واحدة</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MOCK TEST ══════════════════ -->
+<section class="mock-section" id="mock">
+  <div class="two-col reverse">
+    <div class="col-text">
+      <div class="section-eyebrow">Mock Test</div>
+      <div class="section-h">الامتحان الحقيقي؟<br>جرّبته قبل كذا</div>
+      <p class="section-p">محاكاة كاملة تطابق بيئة الـ SDLE — نفس العدد، نفس الوقت، نفس الضغط. لما تيجي اليوم الحقيقي، ما يكون في شي جديد.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">⏱️</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">200 سؤال — 4 ساعات</div><div style="font-size:13px;color:var(--gray)">قسمين × 120 دقيقة + 30 دقيقة استراحة، نفس الـ Blueprint</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">📊</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">تقرير فوري</div><div style="font-size:13px;color:var(--gray)">درجتك على مقياس 200--800 مع تحليل أداء لكل قسم</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🏁</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">تتبّع تحسّنك</div><div style="font-size:13px;color:var(--gray)">شوف كيف درجتك تتحسّن من Mock لـ Mock</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-visual">
+      <div class="mock-ui">
+        <div class="mock-topbar">
+          <div class="mock-exam-info">Mock Test #4 — القسم الأول · 100 سؤال</div>
+          <div class="mock-timer">01:23:47</div>
+        </div>
+        <div class="mock-progress"><div class="mock-prog-fill"></div></div>
+        <div class="mock-body">
+          <div class="mock-q-counter">Question 38 of 100 — Section 1</div>
+          <div class="mock-q-text">A 28-year-old female requests tooth whitening and reports a history of dentinal hypersensitivity. What is the MOST appropriate pre-treatment instruction?</div>
+          <div class="mock-opts">
+            <div class="mock-opt"><div class="mock-opt-letter">A</div>Inform her that whitening is completely safe without precautions</div>
+            <div class="mock-opt active"><div class="mock-opt-letter" style="background:var(--teal);border-color:var(--teal);color:white">B</div>Use desensitizing toothpaste for two weeks prior to treatment</div>
+            <div class="mock-opt"><div class="mock-opt-letter">C</div>Contraindicate treatment due to sensitivity history</div>
+            <div class="mock-opt"><div class="mock-opt-letter">D</div>Proceed immediately with high-concentration H₂O₂</div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-nav-btn">⟨ Previous</button>
+          <div class="mock-flag">🚩 Flag for Review</div>
+          <button class="mock-nav-btn mock-next-btn">Next ⟩</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ DASHBOARD ══════════════════ -->
+<section class="dashboard-section" id="dashboard">
+  <div class="two-col">
+    <div class="col-visual">
+      <div class="dash-full-ui">
+        <div style="font-family:'DM Sans';font-size:11px;color:rgba(255,255,255,.3);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px">📊 لوحة التدريب الشخصية</div>
+        <div class="dash-top-row">
+          <div class="dash-metric"><span class="dash-metric-val">647</span><div class="dash-metric-label">نقاطك الحالية</div></div>
+          <div class="dash-metric"><span class="dash-metric-val" style="color:#22c55e">78%</span><div class="dash-metric-label">نسبة الإتقان</div></div>
+          <div class="dash-metric"><span class="dash-metric-val" style="color:var(--amber)">14</span><div class="dash-metric-label">يوم دراسة متتالي</div></div>
+          <div class="dash-metric"><span class="dash-metric-val">1,240</span><div class="dash-metric-label">سؤال محلول</div></div>
+        </div>
+        <div class="dash-bottom-row">
+          <div class="dash-chart-card">
+            <div class="dash-chart-title">أداؤك خلال آخر 7 أيام (Mock Score)</div>
+            <div class="bar-chart">
+              <div class="bar" style="height:40%;background:rgba(74,143,163,.3)"></div>
+              <div class="bar" style="height:52%;background:rgba(74,143,163,.4)"></div>
+              <div class="bar" style="height:45%;background:rgba(74,143,163,.3)"></div>
+              <div class="bar" style="height:63%;background:rgba(74,143,163,.5)"></div>
+              <div class="bar" style="height:58%;background:rgba(74,143,163,.45)"></div>
+              <div class="bar" style="height:74%;background:rgba(74,143,163,.6)"></div>
+              <div class="bar highlight" style="height:81%"></div>
+            </div>
+            <div class="week-labels">
+              <span class="week-label">الأحد</span><span class="week-label">الاثنين</span><span class="week-label">الثلاثاء</span><span class="week-label">الأربعاء</span><span class="week-label">الخميس</span><span class="week-label">الجمعة</span><span class="week-label">السبت</span>
+            </div>
+          </div>
+          <div class="dash-chart-card">
+            <div class="dash-chart-title">الأقسام — إتقانك</div>
+            <div class="section-breakdown">
+              <div class="sec-row"><span class="sec-name">Periodontics</span><div class="sec-track"><div class="sec-fill" style="width:84%;background:var(--teal)"></div></div><span class="sec-pct">84%</span></div>
+              <div class="sec-row"><span class="sec-name">Endo</span><div class="sec-track"><div class="sec-fill" style="width:71%;background:var(--teal-mid)"></div></div><span class="sec-pct">71%</span></div>
+              <div class="sec-row"><span class="sec-name">Restorative</span><div class="sec-track"><div class="sec-fill" style="width:60%;background:var(--amber)"></div></div><span class="sec-pct">60%</span></div>
+              <div class="sec-row"><span class="sec-name">Ortho/Pedo</span><div class="sec-track"><div class="sec-fill" style="width:67%;background:var(--teal-mid)"></div></div><span class="sec-pct">67%</span></div>
+              <div class="sec-row"><span class="sec-name">Oral Med</span><div class="sec-track"><div class="sec-fill" style="width:55%;background:#ef4444"></div></div><span class="sec-pct">55%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-text">
+      <div class="section-eyebrow">Personalized Dashboard</div>
+      <div class="section-h">مذاكرتك مش عشوائية — اشتغل على نقاط ضعفك</div>
+      <p class="section-p">لوحة تحكم شخصية تتابع كل تفصيلة — من درجة Mock الأخيرة لأداءك في كل قسم لعدد الأيام المتتالية. الذكاء الاصطناعي يحلل بياناتك ويعطيك خطة مراجعة مخصصة.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🎯</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">خطة مذاكرة مخصصة</div><div style="font-size:13px;color:var(--gray)">الذكاء الاصطناعي يحدد أين تركّز وقتك القادم</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">📈</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">منحنى التقدم</div><div style="font-size:13px;color:var(--gray)">شوف كيف نقاطك تتحسن أسبوعاً بعد أسبوع</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">⚡</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">تنبيهات الضعف</div><div style="font-size:13px;color:var(--gray)">تنبيه فوري للمواضيع اللي تحتاج مراجعة إضافية</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ MATCHING CALCULATOR ══════════════════ -->
+<section class="calc-section" id="calculator">
+  <div class="two-col reverse">
+    <div class="col-text">
+      <div class="section-eyebrow">SCFHS Matching Calculator</div>
+      <div class="section-h">شوف أي تخصص تقدر تتقدم له</div>
+      <p class="section-p">بعد ما تعدي SDLE، حاسبة الـ Matching تحسبلك نقاطك التنافسية وتوضّح لك التخصصات اللي درجتك تؤهلك لها — خطط مبكر وحدد هدفك.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🧮</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">حساب تلقائي</div><div style="font-size:13px;color:var(--gray)">أدخل درجتك ومعدلك، الحاسبة تحسب نقطتك التنافسية</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🏥</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">مقارنة التخصصات</div><div style="font-size:13px;color:var(--gray)">شوف التخصصات اللي نقطتك تؤهلك لها بالأخضر</div></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="width:36px;height:36px;background:var(--teal-light);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">🎯</div>
+          <div><div style="font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px">هدف SDLE مخصص</div><div style="font-size:13px;color:var(--gray)">خطة ترفع درجتك لتحقق نقطة Matching المستهدفة</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-visual">
+      <div class="calc-ui">
+        <div class="calc-header">
+          <div class="calc-title">🧮 حاسبة Matching — SCFHS</div>
+          <div class="calc-sub">احسب نقطتك التنافسية وشوف التخصصات المتاحة</div>
+        </div>
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <div class="calc-field-label">درجة SDLE</div>
+            <div class="calc-field-val">647 <span class="calc-field-unit">/ 800</span></div>
+            <input type="range" class="calc-slider" min="200" max="800" value="647">
+          </div>
+          <div class="calc-field">
+            <div class="calc-field-label">المعدل التراكمي</div>
+            <div class="calc-field-val">3.8 <span class="calc-field-unit">/ 5.0</span></div>
+            <input type="range" class="calc-slider" min="0" max="50" value="38">
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-label">نقطتك التنافسية</div>
+          <div class="calc-result-score">84.3</div>
+          <div class="calc-result-status">✓ مؤهل لأغلب تخصصات الأسنان</div>
+        </div>
+        <div class="calc-specialties">
+          <div class="specialty-chip">
+            <div class="specialty-name">Oral Medicine</div>
+            <div class="specialty-score">82.0</div>
+            <div class="specialty-match match-yes">✓ مؤهل</div>
+          </div>
+          <div class="specialty-chip">
+            <div class="specialty-name">Periodontics</div>
+            <div class="specialty-score">83.5</div>
+            <div class="specialty-match match-yes">✓ مؤهل</div>
+          </div>
+          <div class="specialty-chip">
+            <div class="specialty-name">Orthodontics</div>
+            <div class="specialty-score">87.0</div>
+            <div class="specialty-match match-no">✗ تحتاج أعلى</div>
+          </div>
+          <div class="specialty-chip">
+            <div class="specialty-name">Endodontics</div>
+            <div class="specialty-score">81.0</div>
+            <div class="specialty-match match-yes">✓ مؤهل</div>
+          </div>
+          <div class="specialty-chip">
+            <div class="specialty-name">Prosthodontics</div>
+            <div class="specialty-score">80.5</div>
+            <div class="specialty-match match-yes">✓ مؤهل</div>
+          </div>
+          <div class="specialty-chip">
+            <div class="specialty-name">Oral Surgery</div>
+            <div class="specialty-score">85.0</div>
+            <div class="specialty-match match-no">✗ تحتاج أعلى</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PRICING ══════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="section-eyebrow">خطط الاشتراك</div>
+  <div class="section-h">اختر خطتك</div>
+  <p class="section-p">7 أيام مجانية تجرّب فيها كل شي — بدون بطاقة، بدون التزام.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">3 أشهر</div>
+      <div class="price-amt">129 <span class="price-unit">ر.س</span></div>
+      <div class="price-period">لمدة 3 أشهر</div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> Dall SDLE Guider</li>
+        <li><span class="chk">✓</span> QBANK المستنِد كامل</li>
+        <li><span class="chk">✓</span> Mock Tests</li>
+        <li><span class="chk">✓</span> Dashboard شخصي</li>
+        <li><span class="chk">✓</span> عربي + إنجليزي</li>
+      </ul>
+      <button class="btn-plan btn-plan-white">اشترك الحين</button>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">⭐ الأوفر والأشهر</div>
+      <div class="price-name">سنوي</div>
+      <div class="price-amt">299 <span class="price-unit">ر.س</span></div>
+      <div class="price-period">سنة كاملة — وفّر 59%</div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> كل مميزات الأساسي</li>
+        <li><span class="chk">✓</span> حاسبة SCFHS Matching</li>
+        <li><span class="chk">✓</span> تقارير أداء متقدمة</li>
+        <li><span class="chk">✓</span> خطة مذاكرة ذكية</li>
+        <li><span class="chk">✓</span> دعم أولوية</li>
+      </ul>
+      <button class="btn-plan btn-plan-dark">اشترك الحين</button>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Dall Life</div>
+      <div class="price-amt">499 <span class="price-unit">ر.س</span></div>
+      <div class="price-period">معك لحد ما تعدي — 18 شهراً كحد أقصى</div>
+      <ul class="price-features">
+        <li><span class="chk">✓</span> كل مميزات السنوي</li>
+        <li><span class="chk">✓</span> مستمر معك حتى النجاح</li>
+        <li><span class="chk">✓</span> محتوى مخصص لنقاط ضعفك</li>
+        <li><span class="chk">✓</span> دعم مباشر من الفريق</li>
+        <li><span class="chk">✓</span> تحديثات المنصة مجاناً</li>
+      </ul>
+      <button class="btn-plan btn-plan-white">اشترك الحين</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<div class="cta-band">
+  <div>
+    <h2>مستعد تبدأ مذاكرتك الصح؟</h2>
+    <p>انضم لطلاب الأسنان اللي يتحضّرون لـ SDLE مع Dall Academy — منصة كاملة، مراجع رسمية، نتائج حقيقية.</p>
+  </div>
+  <div style="display:flex;gap:14px;flex-shrink:0">
+    <button class="btn-primary">ابدأ تجربتك المجانية ←</button>
+    <button class="btn-outline" style="background:white">تواصل معنا</button>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <img src="/mnt/user-data/uploads/_Transparent_logo.png" alt="Dall Academy">
+  <div class="footer-copy">© 2025 Dall Academy. جميع الحقوق محفوظة.</div>
+  <div style="font-family:'DM Sans';font-size:12px;color:rgba(255,255,255,.28)">dall.academy</div>
+</footer>
+
+
+<script>
+const burger = document.getElementById('navBurger');
+const drawer = document.getElementById('mobileDrawer');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  drawer.classList.toggle('open');
+});
+document.querySelectorAll('#mobileDrawer a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

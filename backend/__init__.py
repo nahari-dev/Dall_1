@@ -1,0 +1,1 @@
+"""Dall Academy — FastAPI backend."""

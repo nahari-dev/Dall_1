@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dall-academy",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000,
+      "autoPort": false,
+      "cwd": "dall-academy"
+    },
+    {
+      "name": "backend",
+      "runtimeExecutable": "uvicorn",
+      "runtimeArgs": ["backend.main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"],
+      "port": 8080
+    },
+    {
+      "name": "frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "3001"],
+      "port": 3001,
+      "cwd": "frontend"
+    }
+  ]
+}

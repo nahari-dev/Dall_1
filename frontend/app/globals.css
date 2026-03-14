@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Arabic:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* SDLE Platform v5 Color System */
+    --teal: #4A8FA3;
+    --teal-mid: #7BB3C4;
+    --teal-light: #D5E8F0;
+    --teal-dark: #357a8f;
+    
+    --navy: #1A1A2E;
+    --navy-mid: #252545;
+    --navy-light: #2e2e50;
+    
+    --off-white: #F5F9FB;
+    --white: #ffffff;
+    
+    --gray: #6B7280;
+    --light-gray: #E5E7EB;
+    --border: #dde4ea;
+    
+    --black: #111111;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+
+    /* Standard CSS variables for components */
+    --background: #F5F9FB;
+    --foreground: #1A1A2E;
+    --card: #ffffff;
+    --card-foreground: #1A1A2E;
+    --primary: #4A8FA3;
+    --primary-foreground: #ffffff;
+    --muted: #D5E8F0;
+    --muted-foreground: #6B7280;
+    --border-color: #dde4ea;
+    --ring: #4A8FA3;
+
+    /* Fonts */
+    --font-display: "Playfair Display", serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --font-arabic: "IBM Plex Arabic", sans-serif;
+  }
+
+  .dark {
+    --background: #0F1620;
+    --foreground: #EAEEF3;
+    --card: #1B2535;
+    --card-foreground: #EAEEF3;
+    --primary: #5DB1D9;
+    --primary-foreground: #0F1620;
+    --muted: #4A7A99;
+    --muted-foreground: #BCCEE6;
+    --border: #2F4557;
+    --ring: #5DB1D9;
+
+    --dall-teal: #5DB1D9;
+    --dall-teal-dark: #3E8DB8;
+    --dall-teal-light: #8ECFD5;
+    --dall-teal-mid: #BCCEE6;
+    --dall-teal-wash: #1A2A3C;
+    --dall-ink: #EAEEF3;
+    --dall-charcoal: #1B2535;
+    --dall-slate: #A3B5C9;
+    --dall-mist: #7A92A8;
+    --dall-cloud: #EAEEF3;
+    --dall-accent-gold: #F4D17A;
+    --dall-accent-sage: #7CC694;
+    --dall-accent-warm: #F0A878;
+
+    --dall-50: #1A2A3C;
+    --dall-100: #1B2535;
+    --dall-200: #2F4557;
+    --dall-300: #4A7A99;
+    --dall-400: #5DB1D9;
+    --dall-500: #8ECFD5;
+    --dall-600: #BCCEE6;
+    --dall-700: #D5E1EA;
+    --dall-800: #EAEEF3;
+    --dall-900: #FFFFFF;
+  }
+
+  * {
+    border-color: var(--border-color);
+  }
+
+  body {
+    @apply bg-off-white text-black;
+    font-family: var(--font-body);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono), monospace;
+  }
+}
+
+/* RTL support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  /* light teal for thumb */
+  @apply bg-[var(--dall-teal-light)] rounded-full;
+}
+.dark ::-webkit-scrollbar-thumb {
+  /* dark teal for dark mode */
+  @apply bg-[var(--dall-teal-dark)];
+}
+
+/* Citation chip animation */
+.citation-chip {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium
+    bg-[var(--dall-teal-wash)] text-[var(--dall-teal-dark)] cursor-pointer transition-all duration-200;
+}
+.citation-chip:hover {
+  @apply bg-dall-teal-light shadow-sm scale-105;
+}
+.dark .citation-chip {
+  @apply bg-[var(--dall-charcoal)] text-[var(--dall-cloud)];
+}
+
+/* Streaming text animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: "▊";
+  animation: blink 1s step-end infinite;
+  @apply text-dall-teal ml-0.5;
+}

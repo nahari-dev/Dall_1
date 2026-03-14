@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" width="1400" height="400" preserveAspectRatio="xMidYMid meet">
+  <!-- Teal/Slate blue logo mark -->
+  <defs>
+    <style>
+      .logo-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-weight: 600; font-size: 240px; fill: #000; letter-spacing: 8px; }
+      .logo-mark { fill: #4a7c8c; }
+      .logo-mark-inner { fill: white; }
+    </style>
+  </defs>
+  
+  <!-- Left D shape -->
+  <path class="logo-mark" d="M 80 60 L 180 60 Q 280 60 280 200 Q 280 340 180 340 L 80 340 Z" />
+  <circle class="logo-mark-inner" cx="160" cy="200" r="70" />
+  
+  <!-- Right P shape -->
+  <path class="logo-mark" d="M 350 60 L 450 60 Q 550 60 550 160 Q 550 260 450 260 L 350 260 Z" />
+  <rect class="logo-mark" x="350" y="260" width="100" height="80" />
+  
+  <!-- DHALL Text -->
+  <text class="logo-text" x="650" y="310">DHALL</text>
+</svg>

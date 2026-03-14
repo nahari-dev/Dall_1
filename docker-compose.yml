@@ -1,0 +1,109 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL ──────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-dall_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dall_password}
+      POSTGRES_DB: ${POSTGRES_DB:-dall_academy}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dall_user}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ───────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── ChromaDB ────────────────────────────────────────────────────────────
+  chromadb:
+    image: chromadb/chroma:0.4.24
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      ANONYMIZED_TELEMETRY: "false"
+
+  # ── MinIO (S3-compatible storage) ───────────────────────────────────────
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── FastAPI Backend ─────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://dall_user:dall_password@postgres:5432/dall_academy
+      REDIS_URL: redis://redis:6379/0
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: "8000"
+      S3_ENDPOINT_URL: http://minio:9000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+
+  # ── Next.js Frontend ────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8080
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  redis_data:
+  chroma_data:
+  minio_data:

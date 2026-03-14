@@ -1,0 +1,92 @@
+[
+  {
+    "book": "Sturdevant's Art & Science of Operative Dentistry",
+    "chapter": "3",
+    "page": "67",
+    "chunk_text": "Dental caries is a biofilm-mediated, sugar-driven, multifactorial, dynamic disease resulting in net mineral loss of dental hard tissues. The caries process involves cycles of demineralization and remineralization. When demineralization exceeds remineralization, a carious lesion forms. Streptococcus mutans is considered the primary cariogenic bacterium due to its acidogenicity, aciduricity, and ability to produce extracellular polysaccharides."
+  },
+  {
+    "book": "Sturdevant's Art & Science of Operative Dentistry",
+    "chapter": "3",
+    "page": "72",
+    "chunk_text": "The International Caries Detection and Assessment System (ICDAS) classifies carious lesions from code 0 (sound) to code 6 (extensive cavity with visible dentine). Early detection at the white spot lesion stage (ICDAS 1-2) allows for non-invasive remineralization therapy with fluoride. The transition from subclinical to clinical caries represents a critical point where preventive intervention is most effective."
+  },
+  {
+    "book": "Sturdevant's Art & Science of Operative Dentistry",
+    "chapter": "7",
+    "page": "170",
+    "chunk_text": "Modern total-etch adhesive systems use 37% phosphoric acid applied for 15 seconds to both enamel and dentin. Over-etching dentin beyond 15 seconds causes excessive demineralization of the intertubular dentin, resulting in collagen collapse and compromised hybrid layer formation. The moist bonding technique involves leaving dentin slightly moist after rinsing to prevent collagen network collapse."
+  },
+  {
+    "book": "Sturdevant's Art & Science of Operative Dentistry",
+    "chapter": "8",
+    "page": "189",
+    "chunk_text": "Composite resins are tooth-colored restorative materials composed of a resin matrix (typically Bis-GMA or UDMA), inorganic filler particles, and a coupling agent (usually silane). Classification is based on filler size: macrofill (10-100μm), microfill (0.04μm), hybrid (0.6-1μm), and nanofill (0.005-0.01μm). Higher filler content (by volume) improves mechanical properties including compressive strength, flexural strength, and wear resistance."
+  },
+  {
+    "book": "Sturdevant's Art & Science of Operative Dentistry",
+    "chapter": "8",
+    "page": "205",
+    "chunk_text": "The incremental placement technique is essential for composite restorations to minimize polymerization shrinkage stress. Each increment should not exceed 2mm in thickness for adequate light penetration and polymerization. The oblique layering technique is preferred as it reduces the C-factor (ratio of bonded to unbonded surfaces) by directing shrinkage vectors away from the critical tooth-restoration interface."
+  },
+  {
+    "book": "Neville's Oral and Maxillofacial Pathology",
+    "chapter": "10",
+    "page": "389",
+    "chunk_text": "Oral leukoplakia is defined as a white patch or plaque that cannot be rubbed off and cannot be characterized clinically or pathologically as any other disease. The overall malignant transformation rate is approximately 3-5%. Speckled leukoplakia (erythroleukoplakia) carries a significantly higher risk. Biopsy is mandatory for definitive diagnosis, and histological findings range from hyperkeratosis without dysplasia to severe epithelial dysplasia or carcinoma in situ."
+  },
+  {
+    "book": "Neville's Oral and Maxillofacial Pathology",
+    "chapter": "10",
+    "page": "409",
+    "chunk_text": "Squamous cell carcinoma (SCC) accounts for approximately 90% of all oral malignancies. Major risk factors include tobacco use, alcohol consumption, betel quid chewing, and HPV infection (particularly HPV-16 for oropharyngeal SCC). The most common intraoral site is the lateral border of the tongue, followed by the floor of the mouth. Histologically, well-differentiated SCC shows keratin pearl formation and intercellular bridges."
+  },
+  {
+    "book": "Neville's Oral and Maxillofacial Pathology",
+    "chapter": "15",
+    "page": "654",
+    "chunk_text": "Ameloblastoma is the most common clinically significant odontogenic tumor. It typically presents as a painless, slow-growing swelling in the posterior mandible (80% of cases). Radiographically, it appears as a multilocular radiolucency with a 'soap bubble' or 'honeycomb' pattern. Histologically, the follicular variant shows islands of odontogenic epithelium with peripheral columnar cells exhibiting reverse nuclear polarity and central stellate reticulum-like areas."
+  },
+  {
+    "book": "Carranza's Clinical Periodontology",
+    "chapter": "2",
+    "page": "34",
+    "chunk_text": "The periodontium consists of four principal structures: gingiva, periodontal ligament (PDL), cementum, and alveolar bone. The periodontal ligament is approximately 0.15-0.38mm wide and contains collagen fibers arranged in specific functional groups: alveolar crest fibers, horizontal fibers, oblique fibers (most numerous), apical fibers, and interradicular fibers (in multirooted teeth). The PDL also contains oxytalan fibers, blood vessels, nerves, and various cell populations."
+  },
+  {
+    "book": "Carranza's Clinical Periodontology",
+    "chapter": "2",
+    "page": "38",
+    "chunk_text": "The biological width (or supracrestal tissue attachment) is the dimension of soft tissue attached to the tooth surface above the alveolar bone crest. As defined by Gargiulo, Wentz, and Orban (1961), it averages 2.04mm: connective tissue attachment (1.07mm) + junctional epithelium (0.97mm). Restorative margins that violate the biological width invariably lead to chronic gingival inflammation, pocket formation, and alveolar bone resorption."
+  },
+  {
+    "book": "Cohen's Pathways of the Pulp",
+    "chapter": "1",
+    "page": "18",
+    "chunk_text": "Pulp vitality assessment should distinguish between sensibility tests (measuring nerve response) and vitality tests (measuring blood flow). Electric pulp testing (EPT) and thermal tests are sensibility tests that can yield false results. Laser Doppler flowmetry (LDF) is a true vitality test that directly measures pulp blood flow non-invasively, making it the most reliable indicator of pulp vitality, though its clinical availability remains limited."
+  },
+  {
+    "book": "Pharmacology and Therapeutics for Dentistry",
+    "chapter": "16",
+    "page": "242",
+    "chunk_text": "Local anesthetics are classified as esters (procaine, tetracaine, benzocaine) or amides (lidocaine, mepivacaine, prilocaine, articaine, bupivacaine) based on their chemical linkage. Ester-type anesthetics are metabolized by plasma cholinesterase (pseudocholinesterase) and are contraindicated in patients with atypical plasma cholinesterase deficiency, as impaired metabolism leads to elevated blood levels and potential systemic toxicity. Amide types are metabolized hepatically by microsomal enzymes."
+  },
+  {
+    "book": "Contemporary Orthodontics (Proffit)",
+    "chapter": "6",
+    "page": "178",
+    "chunk_text": "The ANB angle is derived from the difference between SNA and SNB angles and represents the anteroposterior (sagittal) skeletal relationship between the maxilla and mandible. Normal ANB angle is 2° ± 2°. ANB > 4° indicates skeletal Class II relationship (maxillary protrusion or mandibular retrusion), while ANB < 0° suggests skeletal Class III (maxillary retrusion or mandibular protrusion). The Wits appraisal is an alternative measurement less affected by cranial base variation."
+  },
+  {
+    "book": "Prosthodontic Treatment for Edentulous Patients (Zarb)",
+    "chapter": "14",
+    "page": "283",
+    "chunk_text": "When the vertical dimension of occlusion (VDO) for a complete denture is set too high (excessive), multiple clinical consequences ensue: clicking of teeth during speech due to reduced freeway space, angular cheilitis from excessive stretching of the lip commissures, gagging due to encroachment on the patient's tolerance, masticatory muscle fatigue, temporomandibular joint discomfort, and ridge resorption from excessive forces. The interocclusal rest space (freeway space) should be 2-4mm."
+  },
+  {
+    "book": "White and Pharoah's Oral Radiology",
+    "chapter": "19",
+    "page": "338",
+    "chunk_text": "Periapical pathology associated with non-vital teeth most commonly presents as a well-defined, unilocular radiolucency at the root apex. The two most common entities are periapical granuloma (more common, ~75%) and radicular (periapical) cyst (~25%). Radiographic differentiation between granuloma and cyst is unreliable; definitive diagnosis requires histopathological examination. Size >1cm and a well-corticated border slightly favor cyst over granuloma."
+  }
+]

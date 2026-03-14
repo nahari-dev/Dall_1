@@ -1,0 +1,182 @@
+'use client';
+
+import HeroSection from '@/components/landing/HeroSection';
+import StatsSection from '@/components/landing/StatsSection';
+import FeaturesSection from '@/components/landing/FeaturesSection';
+import PricingSection from '@/components/landing/PricingSection';
+import CTASection from '@/components/landing/CTASection';
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-off-white overflow-hidden" dir="rtl">
+      <HeroSection />
+      <StatsSection />
+      <FeaturesSection />
+      
+      {/* QBANK Section */}
+      <section id="qbank" className="py-20 lg:py-24 px-6 lg:px-14 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-block text-xs font-bold text-teal tracking-widest uppercase mb-4">📚 بنك الأسئلة</div>
+              <h2 className="text-3xl lg:text-4xl font-bold font-display text-navy mb-4 leading-tight">
+                أسئلة موثقة بـ 18 مرجع معتمد
+              </h2>
+              <p className="text-lg text-gray leading-relaxed mb-6">
+                كل سؤال لديه شرح تفصيلي والمرجع الأصلي من الكتب الجامعية المعتمدة. فلتر ذكي حسب القسم، مستوى الصعوبة، والمادة — لتركيز دراستك.
+              </p>
+              <ul className="space-y-3 text-gray font-arabic">
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>أكثر من 2000 سؤال MCQ محترفة</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>شرح مفصل لكل إجابة خاطئة</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>ربط مباشر بالمراجع الأصلية</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-navy rounded-2xl p-6 shadow-2xl">
+              <div className="text-sm text-white/40 mb-4">معاينة من بنك الأسئلة</div>
+              <div className="space-y-3">
+                <div className="bg-white/5 border border-white/10 rounded-lg p-3">
+                  <div className="text-xs text-white/50 mb-2 font-mono">#Q127</div>
+                  <div className="text-sm text-white/80 mb-3">ما هي أنسب مادة عازلة للحفرة الجانبية؟</div>
+                  <div className="space-y-1">
+                    <div className="p-2 rounded bg-white/5 text-xs text-white/60">أ) عاج</div>
+                    <div className="p-2 rounded bg-teal/20 border border-teal text-xs text-teal-mid">ب) فلواباتايت</div>
+                    <div className="p-2 rounded bg-white/5 text-xs text-white/60">ج) كومر</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mock Test Section */}
+      <section id="mock" className="py-20 lg:py-24 px-6 lg:px-14 bg-off-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="bg-navy rounded-2xl p-6 shadow-2xl order-last lg:order-first">
+              <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
+                <div className="flex gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-green"></div>
+                </div>
+                <span className="text-xs text-white/40">نموذج الاختبار</span>
+              </div>
+              <div className="text-xs text-white/50 mb-2">Question 45 / 200 • Time: 03:45:32</div>
+              <div className="w-full h-0.5 bg-white/10 rounded-full overflow-hidden mb-4">
+                <div className="h-full bg-gradient-to-r from-teal to-teal-mid" style={{ width: '38%' }}></div>
+              </div>
+              <div className="bg-white/4 border border-white/10 rounded-lg p-3 mb-3">
+                <div className="text-sm text-white/80 mb-3">ما هي أول خطوة في الترميم للأسنان الأمامية المتضررة؟</div>
+                <div className="space-y-2">
+                  <div className="p-2 rounded border border-white/10 text-xs text-white/60">أ) تنظيف وتشميع</div>
+                  <div className="p-2 rounded border border-white/10 text-xs text-white/60">ب) تحضير الأسنان</div>
+                  <div className="p-2 rounded border border-white/10 text-xs text-white/60">ج) إزالة التسوس</div>
+                  <div className="p-2 rounded bg-teal/20 border border-teal text-xs text-teal-mid">د) التقييم السريري</div>
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-white/40 text-right">
+                <button className="px-3 py-1 rounded border border-white/20 text-white/60">السابق</button>
+                <button className="px-3 py-1 rounded bg-teal border border-teal text-navy">التالي</button>
+              </div>
+            </div>
+
+            <div>
+              <div className="inline-block text-xs font-bold text-teal tracking-widest uppercase mb-4">🎯 اختبار تجريبي</div>
+              <h2 className="text-3xl lg:text-4xl font-bold font-display text-navy mb-4 leading-tight">
+                محاكاة حقيقية للامتحان
+              </h2>
+              <p className="text-lg text-gray leading-relaxed mb-6">
+                200 سؤال، قسمين متتاليين، 4 ساعات — نفس الظروف الحقيقية للـ SDLE. نتائج فورية وتقرير مفصل عن نقاط قوتك وضعفك.
+              </p>
+              <ul className="space-y-3 text-gray font-arabic">
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>اختبارات تجريبية متعددة وموثقة</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>مؤقت حقيقي ومحاكاة الضغط</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>تقرير أداء شامل بعد كل اختبار</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dashboard Section */}
+      <section id="dashboard" className="py-20 lg:py-24 px-6 lg:px-14 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-block text-xs font-bold text-teal tracking-widest uppercase mb-4">📊 لوحة التدريب</div>
+              <h2 className="text-3xl lg:text-4xl font-bold font-display text-navy mb-4 leading-tight">
+                تابع تقدمك يوم بيوم
+              </h2>
+              <p className="text-lg text-gray leading-relaxed mb-6">
+                أرقام وإحصائيات تساعدك تفهم مستواك الحقيقي — إتقانك لكل قسم، الأسئلة الصعبة، ومقارنة أدائك بالمتوسط العام.
+              </p>
+              <ul className="space-y-3 text-gray font-arabic">
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>إحصائيات مفصلة لكل قسم</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>تقارير أداء مقارنة</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-teal font-bold">✓</span>
+                  <span>خطط مراجعة ذكية ومخصصة</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-navy rounded-2xl p-6 text-white">
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-white/5 border border-white/10 rounded-lg p-3">
+                  <div className="text-xs text-white/40 mb-1">الدرجة الحالية</div>
+                  <div className="text-3xl font-black font-display text-teal">742</div>
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-lg p-3">
+                  <div className="text-xs text-white/40 mb-1">الإتقان</div>
+                  <div className="text-3xl font-black font-display text-teal">87%</div>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-white/50 w-24">الأسنان العامة</span>
+                  <div className="flex-1 h-1.5 bg-white/10 rounded overflow-hidden">
+                    <div className="h-full bg-teal" style={{ width: '87%' }}></div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="text-white/50 w-24">الجراحة</span>
+                  <div className="flex-1 h-1.5 bg-white/10 rounded overflow-hidden">
+                    <div className="h-full bg-teal" style={{ width: '72%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <PricingSection />
+      <CTASection />
+    </main>
+  );
+}

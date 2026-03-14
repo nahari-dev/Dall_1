@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 -c \"from langchain\\.agents\\.middleware\\.types import AgentMiddleware; print\\('AgentMiddleware ok'\\)\" 2>&1 \\| grep -E \"ok\\|Error\\|Module\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /Users/alinaahari/Downloads/Dall-Agents-main && python3 -c \"\nimport psycopg2\nconn = psycopg2\\.connect\\('postgresql://dall_user:dall_password@localhost:5433/dall_academy'\\)\ncur = conn\\.cursor\\(\\)\ncur\\.execute\\('''UPDATE \\\\\"Question\\\\\" SET reference = '' WHERE reference LIKE '%\\.pdf%' OR reference ~ '\\[\\\\\\\\u0600-\\\\\\\\u06FF\\]' '''\\)\nprint\\(cur\\.rowcount, 'rows cleared'\\)\nconn\\.commit\\(\\)\nconn\\.close\\(\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
