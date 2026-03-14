@@ -1,0 +1,281 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── ENUMS ──────────────────────────────────────────────────
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum Plan {
+  FREE
+  BASIC
+  ANNUAL
+  LIFE
+}
+
+enum Section {
+  PERIODONTICS
+  ENDODONTICS
+  RESTORATIVE
+  ORTHO_PEDO
+  ORAL_MEDICINE
+}
+
+enum Difficulty {
+  EASY
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum MockStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+// ── CORE USER ─────────────────────────────────────────────
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String    @unique
+  password        String?
+  emailVerified   DateTime?
+  role            Role      @default(STUDENT)
+  plan            Plan      @default(FREE)
+  trialEndsAt     DateTime?
+  suspended       Boolean   @default(false)
+  suspendReason   String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  memory          UserMemory?
+  memoryEvents    UserMemoryEvent[]
+  sessions        Session[]
+  answers         UserAnswer[]
+  mockAttempts    MockAttempt[]
+  chatMessages    ChatMessage[]
+  progress        UserProgress[]
+  transactions    Transaction[]
+  notifications   Notification[]
+  adminNotes      AdminNote[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── USER MEMORY ───────────────────────────────────────────
+model UserMemory {
+  id                  String    @id @default(cuid())
+  userId              String    @unique
+  displayName         String?
+  preferredLang       String    @default("en")
+  examGoalDate        DateTime?
+  targetSpecialty     String?
+  university          String?
+  graduationYear      Int?
+  learningStyle       String?
+  studySessionLen     Int       @default(30)
+  dailyGoal           Int       @default(20)
+  weakSections        String[]
+  strongSections      String[]
+  estimatedScore      Int?
+  lastMockScore       Int?
+  bestMockScore       Int?
+  totalStudyHours     Float     @default(0)
+  currentStreak       Int       @default(0)
+  longestStreak       Int       @default(0)
+  lastStudyDate       DateTime?
+  questionsToday      Int       @default(0)
+  lastQuestionDate    DateTime?
+  bestStudyHour       Int?
+  avgSessionLen       Int?
+  prefersShortSess    Boolean   @default(false)
+  reviewsWrongAns     Boolean   @default(true)
+  lastTopicsAsked     String[]
+  confusedTopics      String[]
+  masteredTopics      String[]
+  preferredExamples   String?
+  motivationLevel     String    @default("normal")
+  consecutiveFails    Int       @default(0)
+  lastEncouragement   DateTime?
+  showArabicFirst     Boolean   @default(false)
+  enableReminder      Boolean   @default(true)
+  reminderTime        String    @default("20:00")
+  onboardingDone      Boolean   @default(false)
+  adminTags           String[]
+  updatedAt           DateTime  @updatedAt
+
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserMemoryEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── QUESTIONS ─────────────────────────────────────────────
+model Question {
+  id            String     @id @default(cuid())
+  qnum          String     @unique
+  section       Section
+  difficulty    Difficulty @default(INTERMEDIATE)
+  textEn        String     @db.Text
+  textAr        String?    @db.Text
+  options       Json
+  correctKey    String
+  explanationEn String     @db.Text
+  explanationAr String?    @db.Text
+  reference     String
+  tags          String[]
+  usageCount    Int        @default(0)
+  correctCount  Int        @default(0)
+  createdAt     DateTime   @default(now())
+
+  answers       UserAnswer[]
+  mockItems     MockQuestionItem[]
+}
+
+// ── ANSWERS & PROGRESS ────────────────────────────────────
+model UserAnswer {
+  id          String   @id @default(cuid())
+  userId      String
+  questionId  String
+  selectedKey String
+  isCorrect   Boolean
+  timeSpent   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question    Question @relation(fields: [questionId], references: [id])
+}
+
+model UserProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  section   Section
+  mastery   Float    @default(0)
+  answered  Int      @default(0)
+  correct   Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, section])
+}
+
+// ── MOCK TESTS ────────────────────────────────────────────
+model MockAttempt {
+  id               String     @id @default(cuid())
+  userId           String
+  status           MockStatus @default(IN_PROGRESS)
+  score            Int?
+  rawScore         Int?
+  timeTaken        Int?
+  startedAt        DateTime   @default(now())
+  completedAt      DateTime?
+  sectionBreakdown Json?
+
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items            MockQuestionItem[]
+}
+
+model MockQuestionItem {
+  id          String      @id @default(cuid())
+  attemptId   String
+  questionId  String
+  selectedKey String?
+  flagged     Boolean     @default(false)
+  order       Int
+
+  attempt     MockAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question    Question    @relation(fields: [questionId], references: [id])
+}
+
+// ── CHAT ──────────────────────────────────────────────────
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String
+  content   String   @db.Text
+  topic     String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── TRANSACTIONS ──────────────────────────────────────────
+model Transaction {
+  id            String   @id @default(cuid())
+  userId        String
+  plan          Plan
+  amount        Float
+  currency      String   @default("SAR")
+  status        String
+  paymentMethod String?
+  reference     String?  @unique
+  failReason    String?
+  createdAt     DateTime @default(now())
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ── NOTIFICATIONS ─────────────────────────────────────────
+model Notification {
+  id           String    @id @default(cuid())
+  userId       String?
+  title        String
+  body         String    @db.Text
+  type         String    @default("info")
+  read         Boolean   @default(false)
+  scheduledFor DateTime?
+  sentAt       DateTime  @default(now())
+
+  user         User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Announcement {
+  id        String    @id @default(cuid())
+  title     String
+  body      String    @db.Text
+  color     String    @default("info")
+  active    Boolean   @default(true)
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// ── ADMIN ─────────────────────────────────────────────────
+model AdminNote {
+  id        String   @id @default(cuid())
+  userId    String
+  adminId   String
+  note      String   @db.Text
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  adminId   String
+  action    String
+  target    String
+  detail    String?
+  createdAt DateTime @default(now())
+}

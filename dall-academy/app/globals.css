@@ -1,0 +1,709 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Arabic:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────
+   CSS Custom Properties — Dall Academy Brand
+   ────────────────────────────────────────────── */
+:root {
+  --teal: #4A8FA3;
+  --teal-mid: #7BB3C4;
+  --teal-light: #D5E8F0;
+  --teal-dark: #357a8f;
+  --navy: #1A1A2E;
+  --navy-mid: #252545;
+  --navy-light: #2e2e50;
+  --off-white: #F5F9FB;
+  --white: #ffffff;
+  --gray: #6B7280;
+  --light-gray: #E5E7EB;
+  --border: #dde4ea;
+  --black: #111111;
+  --green: #22c55e;
+  --amber: #f59e0b;
+
+  /* Legacy aliases for backward compat */
+  --teal-primary: #4A8FA3;
+  --offwhite: #F5F9FB;
+  --dark-bg: #1A1A2E;
+  --sidebar-bg: #111320;
+}
+
+/* ──────────────────────────────────────────────
+   Reset & Base
+   ────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Default: dark theme (app interior) */
+body {
+  background-color: var(--navy);
+  color: var(--off-white);
+}
+
+/* ──────────────────────────────────────────────
+   Theme: Public / Light Pages
+   ────────────────────────────────────────────── */
+.theme-light {
+  background-color: var(--off-white);
+  color: var(--navy);
+}
+
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
+  color: var(--navy);
+}
+
+.theme-light p {
+  color: var(--gray);
+}
+
+/* ──────────────────────────────────────────────
+   Theme: Dark / App Interior Pages
+   ────────────────────────────────────────────── */
+.theme-dark {
+  background-color: var(--navy);
+  color: var(--off-white);
+}
+
+/* ──────────────────────────────────────────────
+   Scrollbar
+   ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal-mid);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) var(--navy);
+}
+
+/* ──────────────────────────────────────────────
+   Typography — Font Families
+   ────────────────────────────────────────────── */
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-arabic {
+  font-family: 'IBM Plex Arabic', sans-serif;
+}
+
+/* ──────────────────────────────────────────────
+   Arabic / RTL Support
+   ────────────────────────────────────────────── */
+[lang='ar'],
+.arabic {
+  font-family: 'IBM Plex Arabic', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] {
+  font-family: 'IBM Plex Arabic', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] .sidebar-active {
+  border-left: none;
+  border-right: 3px solid var(--teal);
+}
+
+/* ──────────────────────────────────────────────
+   Stats & Display Numbers
+   ────────────────────────────────────────────── */
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+}
+
+/* ──────────────────────────────────────────────
+   Section Eyebrow Labels
+   ────────────────────────────────────────────── */
+.section-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* ──────────────────────────────────────────────
+   Gradients
+   ────────────────────────────────────────────── */
+.gradient-teal {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+}
+
+.gradient-teal-light {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+}
+
+/* ──────────────────────────────────────────────
+   Navigation — Frosted Glass (Public Pages)
+   ────────────────────────────────────────────── */
+.nav-frosted {
+  background: rgba(245, 249, 251, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ──────────────────────────────────────────────
+   Glass Card — Works in both light and dark
+   ────────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+}
+
+.theme-light .glass-card,
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ──────────────────────────────────────────────
+   Feature Cards (Public/Light Pages)
+   ────────────────────────────────────────────── */
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 143, 163, 0.1);
+}
+
+.feature-card .icon-wrap {
+  background: var(--teal-light);
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ──────────────────────────────────────────────
+   Dark UI Preview Cards
+   ────────────────────────────────────────────── */
+.dark-preview {
+  background: var(--navy);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ──────────────────────────────────────────────
+   Sidebar
+   ────────────────────────────────────────────── */
+.sidebar-active {
+  background: linear-gradient(90deg, rgba(74, 143, 163, 0.2) 0%, rgba(74, 143, 163, 0.05) 100%);
+  border-left: 3px solid var(--teal);
+}
+
+/* ──────────────────────────────────────────────
+   Buttons
+   ────────────────────────────────────────────── */
+
+/* Primary: navy bg, white text, hover -> teal */
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.1s;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--teal);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Inside dark theme, primary button uses teal bg */
+.theme-dark .btn-primary {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.theme-dark .btn-primary:hover {
+  background: var(--teal-dark);
+}
+
+/* Outline: transparent bg, navy border, navy text */
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  border: 1.5px solid var(--navy);
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.theme-dark .btn-outline {
+  color: var(--teal-mid);
+  border-color: rgba(123, 179, 196, 0.3);
+}
+
+.theme-dark .btn-outline:hover {
+  background: rgba(123, 179, 196, 0.1);
+  color: var(--white);
+}
+
+/* Ghost: transparent bg, teal text, subtle border */
+.btn-ghost {
+  background: transparent;
+  color: var(--teal-mid);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background 0.2s;
+  cursor: pointer;
+  border: 1px solid rgba(123, 179, 196, 0.3);
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  background: rgba(123, 179, 196, 0.1);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Nav CTA: teal bg, white text */
+.btn-nav-cta {
+  background: var(--teal);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.1s;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-nav-cta:hover {
+  background: var(--teal-dark);
+}
+
+.btn-nav-cta:active {
+  transform: scale(0.98);
+}
+
+/* ──────────────────────────────────────────────
+   Input Fields — Dark (App Interior)
+   ────────────────────────────────────────────── */
+.input-dark {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--off-white);
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 100%;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-dark:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(74, 143, 163, 0.15);
+}
+
+.input-dark::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ──────────────────────────────────────────────
+   Input Fields — Light (Auth / Public Pages)
+   ────────────────────────────────────────────── */
+.input-light {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 100%;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-light:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(74, 143, 163, 0.12);
+}
+
+.input-light::placeholder {
+  color: var(--gray);
+}
+
+/* ──────────────────────────────────────────────
+   Score Gauge (SVG)
+   ────────────────────────────────────────────── */
+.gauge-track {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.gauge-fill {
+  stroke: var(--teal);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.theme-light .gauge-track {
+  stroke: var(--light-gray);
+}
+
+/* ──────────────────────────────────────────────
+   Section Colors (Dental Specialties)
+   ────────────────────────────────────────────── */
+.section-periodontics { color: #4A8FA3; }
+.section-endodontics { color: #7BB3C4; }
+.section-restorative { color: #2D6A7F; }
+.section-ortho_pedo { color: #5BA3B8; }
+.section-oral_medicine { color: #9AC8D5; }
+
+/* ──────────────────────────────────────────────
+   Code References
+   ────────────────────────────────────────────── */
+.code-ref {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(74, 143, 163, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--teal);
+}
+
+.theme-dark .code-ref {
+  background: rgba(74, 143, 163, 0.15);
+  color: var(--teal-mid);
+}
+
+/* ──────────────────────────────────────────────
+   Progress Bar
+   ────────────────────────────────────────────── */
+.progress-bar {
+  height: 4px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--teal);
+  transition: width 0.4s ease;
+}
+
+.theme-light .progress-bar {
+  background: var(--light-gray);
+}
+
+/* ──────────────────────────────────────────────
+   Badge / Tag
+   ────────────────────────────────────────────── */
+.badge-teal {
+  background: rgba(74, 143, 163, 0.15);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.badge-green {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.badge-amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--amber);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+/* ──────────────────────────────────────────────
+   Live Dot / Status Indicator
+   ────────────────────────────────────────────── */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ──────────────────────────────────────────────
+   Table Styles (Admin)
+   ────────────────────────────────────────────── */
+.table-dark th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gray);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.table-dark td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--off-white);
+}
+
+.table-dark tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ──────────────────────────────────────────────
+   Tooltip
+   ────────────────────────────────────────────── */
+.tooltip {
+  background: var(--navy);
+  color: var(--off-white);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ──────────────────────────────────────────────
+   Animations
+   ────────────────────────────────────────────── */
+
+/* Fade up — hero sections, card entrances */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+/* Fade in — general content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Pulse — live dots, status indicators */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+/* Float — floating preview cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Typing indicator dots */
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.typing-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Staggered fade-in for lists */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+
+/* ──────────────────────────────────────────────
+   Utility: Teal text and background helpers
+   ────────────────────────────────────────────── */
+.text-teal { color: var(--teal); }
+.text-teal-mid { color: var(--teal-mid); }
+.text-teal-light { color: var(--teal-light); }
+.text-teal-dark { color: var(--teal-dark); }
+.text-navy { color: var(--navy); }
+.text-off-white { color: var(--off-white); }
+
+.bg-teal { background-color: var(--teal); }
+.bg-teal-light { background-color: var(--teal-light); }
+.bg-navy { background-color: var(--navy); }
+.bg-navy-mid { background-color: var(--navy-mid); }
+.bg-navy-light { background-color: var(--navy-light); }
+.bg-off-white { background-color: var(--off-white); }
+
+.border-teal { border-color: var(--teal); }
+.border-border { border-color: var(--border); }
+
+/* ──────────────────────────────────────────────
+   Selection highlight
+   ────────────────────────────────────────────── */
+::selection {
+  background: rgba(74, 143, 163, 0.3);
+  color: var(--white);
+}
+
+/* ──────────────────────────────────────────────
+   Focus ring (accessibility)
+   ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
